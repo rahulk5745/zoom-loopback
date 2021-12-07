@@ -1,0 +1,95 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "type": "object",
+    "title": "Document",
+    "properties": {
+        "_id": {
+            "type": "string",
+            "pattern": "^[a-fA-F0-9]{24}$"
+        },
+        "parent_room_id": {
+            "type": "string",
+            "pattern": "^[a-fA-F0-9]{24}$"
+        },
+        "parent_id": {
+            "type": "string",
+            "pattern": "^[a-fA-F0-9]{24}$"
+        },
+        "storage_id": {
+            "type": "string",
+            "pattern": "^[a-fA-F0-9]{24}$"
+        },
+        "site_map_id": {
+            "type": "string",
+            "pattern": "^[a-fA-F0-9]{24}$"
+        },
+        "created_by": {
+            "type": "string",
+            "pattern": "^[a-fA-F0-9]{24}$"
+        },
+        "provider_id": {
+            "type": "string",
+            "pattern": "^[a-fA-F0-9]{24}$"
+        },
+        "category": {
+            "type": "string",
+            "enum": [
+                "folder",
+                "document",
+                "template"
+            ]
+        },
+        "type": {
+            "type": "string",
+            "enum": [
+                "document",
+                "spreadsheet",
+                "presentation",
+                "audio",
+                "video",
+                "image",
+                "binary",
+                "archive"
+            ]
+        },
+        "sub_type": {
+            "type": "string"
+        },
+        "attributes": {
+            "type": "array",
+            "additionalItems": true,
+            "items": [
+                {
+                   "name":{
+                    "type": "string"
+                    },
+                    "value":{
+                    "type":"string"
+                    }
+                }
+            ]
+        },
+        "timings": {
+            "type": "object",
+            "properties": {
+                "creation_time": {
+                    "type": "string"
+                },
+                "last_modified": {
+                    "type": "string",
+                    "format": "date-time"
+                }
+            }
+        },
+        "size": {
+            "type": "number"
+        },
+        "tags": {
+            "type": "array",
+            "additionalItems": true
+        }
+    },
+    "required": [
+        "_id"
+    ]
+}

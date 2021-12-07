@@ -1,0 +1,100 @@
+{
+  "name": "TeamsAuth",
+  "connector": "rest",
+  "baseURL": "https://login.microsoftonline.com/",
+  "crud": "false",
+  "operations": [
+    {
+      "template": {
+        "method": "POST",
+        "url": "https://login.microsoftonline.com/organizations/oauth2/v2.0/token",
+        "headers": {
+          "content-type": "application/x-www-form-urlencoded"
+        },
+        "body": "client_id={client_id}&code={code}&grant_type={grant_type}&scope={scope}&client_secret={client_secret}&redirect_uri={redirect_uri}",
+        "options": {
+          "strictSSL": true,
+          "useQuerystring": true
+        }
+      },
+      "functions": {
+        "getAccessToken": [
+          "client_id",
+          "code",
+          "grant_type",
+          "scope",
+          "client_secret",
+          "redirect_uri"
+        ]
+      }
+    },
+    {
+      "template": {
+        "method": "POST",
+        "url": "https://login.microsoftonline.com/organizations/oauth2/v2.0/token",
+        "headers": {
+          "content-type": "application/x-www-form-urlencoded"
+        },
+        "body": "client_id={client_id}&refresh_token={refresh_token}&grant_type=refresh_token&scope={scope}&client_secret={client_secret}&redirect_uri={redirect_uri}",
+        "options": {
+          "strictSSL": true,
+          "useQuerystring": true
+        }
+      },
+      "functions": {
+        "refreshAccessToken": [
+          "client_id",
+          "refresh_token",
+          "scope",
+          "client_secret",
+          "redirect_uri"
+        ]
+      }
+    },
+    {
+      "template": {
+        "method": "GET",
+        "url": "https://login.microsoftonline.com/{tenant}/adminconsent",
+        "headers": {
+          "content-type": "application/x-www-form-urlencoded"
+        },
+        "body": "client_id={client_id}&state={state}&redirect_uri={redirect_uri}",
+        "options": {
+          "strictSSL": true,
+          "useQuerystring": true
+        }
+      },
+      "functions": {
+        "getAccessTokena": [
+          "tenant",
+          "client_id",
+          "state",
+          "redirect_uri"
+        ]
+      }
+    },
+    {
+      "template": {
+        "method": "POST",
+        "url": "POST https://login.microsoftonline.com/{tenant}/oauth2/v2.0/token HTTP/1.1",
+        "headers": {
+          "content-type": "application/x-www-form-urlencoded"
+        },
+        "body": "client_id={client_id}&code={code}&grant_type={grant_type}&scope={scope}&client_secret={client_secret}&redirect_uri={redirect_uri}",
+        "options": {
+          "strictSSL": true,
+          "useQuerystring": true
+        }
+      },
+      "functions": {
+        " ": [
+          "tenant",
+          "client_id",
+          "grant_type",
+          "scope",
+          "client_secret"
+        ]
+      }
+    }
+  ]
+}

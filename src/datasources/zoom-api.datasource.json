@@ -1,0 +1,52 @@
+{
+  "name": "ZoomAuth",
+  "connector": "rest",
+  "baseURL": "https://api.zoom.us",
+  "crud": "false",
+  "operations": [
+    {
+      "template": {
+        "method": "POST",
+        "url": "https://zoom.us/oauth/token",
+        "headers": {
+          "authorization": "Basic {authHeader}",
+          "content-type": "application/x-www-form-urlencoded"
+        },
+        "body": "code={code}&grant_type={grant_type}&redirect_uri={redirect_uri}",
+        "options": {
+          "strictSSL": true,
+          "useQuerystring": true
+        }
+      },
+      "functions": {
+        "getAccessToken": [
+          "authHeader",
+          "code",
+          "grant_type",
+          "redirect_uri"
+        ]
+      }
+    },
+    {
+      "template": {
+        "method": "POST",
+        "url": "https://zoom.us/oauth/token",
+        "headers": {
+          "authorization": "Basic base64Encode(client_id:client_secret)",
+          "content-type": "application/x-www-form-urlencoded"
+        },
+        "body": "refresh_token={refresh_token}&grant_type=refresh_token&redirect_uri={redirect_uri}",
+        "options": {
+          "strictSSL": true,
+          "useQuerystring": true
+        }
+      },
+      "functions": {
+        "refreshAccessToken": [
+          "refresh_token",
+          "redirect_uri"
+        ]
+      }
+    }
+  ]
+}

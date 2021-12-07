@@ -1,0 +1,29 @@
+{
+  "name": "ZoomAuthUser",
+  "connector": "rest",
+  "baseURL": "https://api.zoom.us",
+  "crud": "true",
+  "operations": [
+    {
+      "template": {
+        "method": "GET",
+        "url": "https://api.zoom.us/v2/users/{userId}/meetings",
+        "headers": {
+          "authorization": "Bearer {accessToken}",
+          "content-type": "application/json"
+        },
+        "body": "",
+        "options": {
+          "strictSSL": true,
+          "useQuerystring": true
+        }
+      },
+      "functions": {
+        "getUser": [
+          "accessToken",
+          "userId"
+        ]
+      }
+    }
+  ]
+}

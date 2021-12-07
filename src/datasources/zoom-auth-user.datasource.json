@@ -1,0 +1,92 @@
+{
+  "name": "ZoomAuthUser",
+  "connector": "rest",
+  "baseURL": "https://api.zoom.us",
+  "crud": "true",
+  "operations": [
+    {
+      "template": {
+        "method": "GET",
+        "url": "https://api.zoom.us/v2/users/{userId}",
+        "headers": {
+          "authorization": "Bearer {accessToken}",
+          "content-type": "application/json"
+        },
+        "body": "",
+        "options": {
+          "strictSSL": true,
+          "useQuerystring": true
+        }
+      },
+      "functions": {
+        "getUser": [
+          "accessToken",
+          "userId"
+        ]
+      }
+    },
+    {
+      "template": {
+        "method": "GET",
+        "url": "https://api.zoom.us/v2/users/{userId}/meetings",
+        "headers": {
+          "authorization": "Bearer {accessToken}",
+          "content-type": "application/json"
+        },
+        "body": "",
+        "options": {
+          "strictSSL": true,
+          "useQuerystring": true
+        }
+      },
+      "functions": {
+        "getMeetings": [
+          "accessToken",
+          "userId"
+        ]
+      }
+    },
+    {
+      "template": {
+        "method": "POST",
+        "url": "https://api.zoom.us/v2/users/{userId}/meetings",
+        "headers": {
+          "authorization": "Bearer {accessToken}",
+          "content-type": "application/json"
+        },
+        "body": "{data}",
+        "options": {
+          "strictSSL": true,
+          "useQuerystring": true
+        }
+      },
+      "functions": {
+        "createMeeting": [
+          "accessToken",
+          "userId",
+          "data"
+        ]
+      }
+    },
+    {
+      "template": {
+        "method": "GET",
+        "url": "https://api.zoom.us/v2/users/meetings{meetingId}",
+        "headers": {
+          "authorization": "Bearer {accessToken}",
+          "content-type": "application/json"
+        },
+        "options": {
+          "strictSSL": true,
+          "useQuerystring": true
+        }
+      },
+      "functions": {
+        "getMeeting": [
+          "accessToken",
+          "meetingId"
+        ]
+      }
+    }
+  ]
+}
